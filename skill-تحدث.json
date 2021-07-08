@@ -1,0 +1,364 @@
+{
+  "intents": [
+    {
+      "intent": "الاسعار",
+      "examples": [
+        {
+          "text": "القهوة بكم سعرها"
+        },
+        {
+          "text": "الكوب بكم"
+        },
+        {
+          "text": "بكم"
+        },
+        {
+          "text": "بكم السعر"
+        },
+        {
+          "text": "كم المبلغ"
+        },
+        {
+          "text": "كم المجموع"
+        },
+        {
+          "text": "لقهوة بكم"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تاكيد_الطلب",
+      "examples": [
+        {
+          "text": "دفع بالبطاقة"
+        },
+        {
+          "text": "نستلم من السيارة"
+        },
+        {
+          "text": "هذا الطلب فقط"
+        },
+        {
+          "text": "هذا بس طلبنا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "اهلا وسهلا"
+        },
+        {
+          "text": "كيف الحال"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هلا"
+        },
+        {
+          "text": "هلو"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "خدمات_اخرى",
+      "examples": [
+        {
+          "text": "السلامة"
+        },
+        {
+          "text": "الى اللقاء"
+        },
+        {
+          "text": "شكرا"
+        },
+        {
+          "text": "لا"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "طلبات",
+      "examples": [
+        {
+          "text": "عندكم هذا الطلب"
+        },
+        {
+          "text": "متوفر للطلب"
+        },
+        {
+          "text": "ممكن نسوي ريكوست الى قهوة"
+        },
+        {
+          "text": "ممكن نطلب"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "نوع_الطلبات",
+      "examples": [
+        {
+          "text": "شاي كرك"
+        },
+        {
+          "text": "قهوة باردة"
+        },
+        {
+          "text": "قهوة بالحليب والزعفران"
+        },
+        {
+          "text": "قهوة بحليب"
+        },
+        {
+          "text": "قهوة بحليب محلى"
+        },
+        {
+          "text": "قهوة ساخنة"
+        },
+        {
+          "text": "قهوة سادة"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-currency",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-percentage",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "نوع_الطلبات",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "ترحيب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اهلا وسهلا بك عميلنا العزيز"
+              },
+              {
+                "text": "نتطلع لخدمتك"
+              },
+              {
+                "text": "مرحبا بك"
+              },
+              {
+                "text": "هلا والله"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_1_1625757736280",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "title": "الاسعار",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "جميع اسعارنا موحدة وعليها عرض بالوقت الحالي الكوب ب 10 ريال ماعدى الكرك 5 ريال"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#الاسعار",
+      "dialog_node": "node_3_1625759539312",
+      "previous_sibling": "node_4_1625759312624"
+    },
+    {
+      "type": "standard",
+      "title": "نوع الطلبات",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "نعم متوفر"
+              },
+              {
+                "text": "تم تاكيد طلبك"
+              },
+              {
+                "text": "بخدمتك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#نوع_الطلبات",
+      "dialog_node": "node_4_1625759312624",
+      "previous_sibling": "node_7_1625758342969"
+    },
+    {
+      "type": "frame",
+      "title": "طلبات",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "نعم تفضل بخدمتك , ماهو طلبك؟ "
+              },
+              {
+                "text": "بخدمتك , زودنا بطلبك"
+              },
+              {
+                "text": "حاضرين لخدمتك , ماهو طلبك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#طلبات",
+      "dialog_node": "node_7_1625758342969",
+      "previous_sibling": "node_1_1625757736280"
+    },
+    {
+      "type": "standard",
+      "title": "تاكيد الطلب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تم تأكيد الطلب, توجه لنافذه الدفع لاستلام طلبك .. شكراً جزيلاً"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تاكيد_الطلب",
+      "dialog_node": "node_7_1625759886130",
+      "previous_sibling": "node_3_1625759539312"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_7_1625759886130",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اهلاً وسهلاً بك عميلنا العزيز, كيف يمكننا خدمتك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "تحدث",
+  "language": "ar",
+  "description": ""
+}
